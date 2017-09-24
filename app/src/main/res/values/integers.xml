@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="charge_battery_anim_frame_duration">500</integer>
+    <integer name="charge_drag_anim_frame_duration">350</integer>
+    <integer name="charge_slide_torch_duration">60</integer>
+    <integer name="lock_cross_duration">240</integer>
+</resources>

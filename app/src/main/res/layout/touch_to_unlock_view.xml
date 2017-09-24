@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/txtv_UnlockTips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fram_UnLockContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:text="Slide Up To Unlock"
+        android:textColor="@color/common_white"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:id="@+id/fram_UnLockContainer"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center_horizontal">
+
+        <com.eagle.locker.widget.RippleBackground
+            android:id="@+id/rb_LockRipple"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|center_horizontal"
+            app:rb_color="@color/common_white"
+            app:rb_duration="2400"
+            app:rb_radius="24dp"
+            app:rb_rippleAmount="3"
+            app:rb_scale="1.7"
+            app:rb_strokeWidth="3dp"
+            app:rb_type="strokeRipple" />
+
+
+        <ImageView
+            android:id="@+id/imgv_LockIcon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_lock_icon"
+            android:scaleType="centerCrop" />
+    </RelativeLayout>
+</RelativeLayout>
+

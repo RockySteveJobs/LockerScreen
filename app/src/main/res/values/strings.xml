@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Locker Screen</string>
+    <string name="slide_up_to_unlock">Slide up To Unlock</string>
+    <string name="release_to_unlock">Release to Unlock</string>
+</resources>
