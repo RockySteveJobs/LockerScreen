@@ -133,7 +133,7 @@ public class LockerActivity extends AppCompatActivity {
 
             @Override
             public void onPullCanceled() {
-                Toast.makeText(getApplication(), "Pull Canceled", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplication(), R.string.pull_canceled, Toast.LENGTH_LONG).show();
             }
 
             @Override
