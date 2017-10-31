@@ -8,8 +8,12 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#33000000" />
+        android:background="#55000000" />
 
+    <com.eagle.locker.spark.SparkView
+        android:id="@+id/sp_Spark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:id="@+id/relel_ContentContainer"
@@ -128,10 +132,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+
     <com.eagle.locker.widget.TouchToUnLockView
         android:id="@+id/tulv_UnlockView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible" />
+
 
 </RelativeLayout>
