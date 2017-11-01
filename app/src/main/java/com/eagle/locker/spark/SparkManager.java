@@ -57,7 +57,7 @@ public class SparkManager {
 
         // 初始化火花
         if (mCurDistance == mDistance && isActive) {
-            mDistance = getRandom(SparkView.WIDTH / 4, mRandom.nextInt(15)) + 1;
+            mDistance = getRandom(SparkView.WIDTH / 2, mRandom.nextInt(15)) + 1;
             mCurDistance = 0;
 
             start = new Point(X, Y);

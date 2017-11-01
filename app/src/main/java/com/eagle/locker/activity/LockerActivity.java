@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Animatable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -22,6 +23,9 @@ import android.widget.Toast;
 import com.eagle.locker.R;
 import com.eagle.locker.burst.BurstParticleSystem;
 import com.eagle.locker.burst.MyTextureAtlasFactory;
+import com.eagle.locker.spark.SparkView;
+import com.eagle.locker.task.ExecuteTask;
+import com.eagle.locker.task.ExecuteTaskManager;
 import com.eagle.locker.util.DateUtils;
 import com.eagle.locker.util.DimenUtils;
 import com.eagle.locker.util.PowerUtil;
@@ -29,6 +33,7 @@ import com.eagle.locker.util.ViewUtils;
 import com.eagle.locker.widget.TouchPullDownView;
 import com.eagle.locker.widget.TouchToUnLockView;
 import com.github.shchurov.particleview.ParticleView;
+import com.xdandroid.hellodaemon.IntentWrapper;
 import com.zyyoona7.lib.EasyPopup;
 
 import java.text.SimpleDateFormat;
@@ -69,6 +74,10 @@ public class LockerActivity extends AppCompatActivity {
     private ParticleView pv_ParticleView;
     private BurstParticleSystem particleSystem;
     private Random random = new Random();
+
+    private SparkView sp_Spark;
+    private SparkTask sparkTask;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,6 +203,13 @@ public class LockerActivity extends AppCompatActivity {
         }
         updateTimeUI();
         updateBatteryUI();
+
+        sp_Spark = ViewUtils.get(this, R.id.sp_Spark);
+        sparkTask = new SparkTask();
+    }
+
+    public void onBackPressed() {
+        IntentWrapper.onBackPressed(this);
     }
 
 
@@ -241,8 +257,6 @@ public class LockerActivity extends AppCompatActivity {
 
     private void updateTimeUI() {
         mLockTime.setText(DateUtils.getHourString(this, System.currentTimeMillis()));
-
-
         mLockDate.setText(weekFormat.format(calendar.getTime()) + "    " + monthFormat.format(calendar.getTime()));
     }
 
@@ -292,6 +306,26 @@ public class LockerActivity extends AppCompatActivity {
         super.onResume();
         mUnlockView.startAnim();
         pv_ParticleView.startRendering();
+        ExecuteTaskManager.getInstance().newExecuteTask(sparkTask);
+    }
+
+    private class SparkTask extends ExecuteTask {
+        @Override
+        public ExecuteTask doTask() {
+
+            for (int i = 0; i < SparkView.WIDTH; i++) {
+                sp_Spark.setActive(true);
+                sp_Spark.startSpark(i, random.nextInt(SparkView.HEIGHT));
+                try {
+                    Thread.sleep(2 + random.nextInt(8));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                sp_Spark.setActive(false);
+            }
+
+            return null;
+        }
     }
 
     @Override
@@ -299,6 +333,7 @@ public class LockerActivity extends AppCompatActivity {
         super.onPause();
         mUnlockView.stopAnim();
         pv_ParticleView.stopRendering();
+        ExecuteTaskManager.getInstance().removeExecuteTask(sparkTask);
     }
 
     public static void startActivity(Context context) {

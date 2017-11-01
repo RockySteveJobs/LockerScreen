@@ -21,6 +21,8 @@
         </activity>
 
 
+        <service android:name=".service.TraceService" />
+
         <service
             android:name=".service.LockerService"
             android:enabled="true"

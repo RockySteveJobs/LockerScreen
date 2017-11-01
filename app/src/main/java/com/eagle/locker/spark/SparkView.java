@@ -1,6 +1,7 @@
 package com.eagle.locker.spark;
 
 import java.util.Date;
+import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -30,6 +31,8 @@ public class SparkView extends SurfaceView implements SurfaceHolder.Callback, Ru
 
     // 屏幕宽高
     public static int WIDTH, HEIGHT;
+
+    private Random random = new Random();
 
     public SparkView(Context context) {
         super(context);
@@ -91,7 +94,7 @@ public class SparkView extends SurfaceView implements SurfaceHolder.Callback, Ru
                         }
 
                         // 控制帧数
-                        Thread.sleep(Math.max(0, 30 - (new Date().getTime() - date.getTime())));
+                        Thread.sleep(Math.max(0, 10 - (new Date().getTime() - date.getTime())));
                     }
                 }
             } catch (Exception e) {
@@ -103,6 +106,17 @@ public class SparkView extends SurfaceView implements SurfaceHolder.Callback, Ru
             }
         }
     }
+
+
+    public void startSpark(float x, float y) {
+        X = x;
+        Y = y;
+    }
+
+    public void setActive(boolean isActive) {
+        sparkManager.isActive = isActive;
+    }
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
