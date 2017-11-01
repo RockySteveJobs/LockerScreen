@@ -78,6 +78,7 @@ public class LockerActivity extends AppCompatActivity {
     private SparkView sp_Spark;
     private SparkTask sparkTask;
 
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -306,7 +307,12 @@ public class LockerActivity extends AppCompatActivity {
         super.onResume();
         mUnlockView.startAnim();
         pv_ParticleView.startRendering();
-        ExecuteTaskManager.getInstance().newExecuteTask(sparkTask);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ExecuteTaskManager.getInstance().newExecuteTask(sparkTask);
+            }
+        }, 500);
     }
 
     private class SparkTask extends ExecuteTask {
