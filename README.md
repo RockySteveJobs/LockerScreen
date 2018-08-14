@@ -3,8 +3,6 @@
 
 # 废话不多说，来两张图吧：
 
-![image](https://github.com/RockySteveJobs/LockerScreen/blob/master/art/img_lcoker_one.gif)
-
 ![image](https://github.com/RockySteveJobs/LockerScreen/blob/master/art/img_locker_two.jpg)
 
 项目介绍文章：http://www.jianshu.com/p/67cab477a3d5
